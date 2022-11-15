@@ -1,5 +1,5 @@
 # Podatkovne-baze-1
 
-#Avtorja: \newline
-Anej Mužič \newline
+#Avtorja: \
+Anej Mužič \
 Adnan Pajalić
