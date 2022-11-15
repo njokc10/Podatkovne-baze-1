@@ -1,5 +1,5 @@
 # Podatkovne-baze-1
 
-##Avtorja: 
+## Avtorja: 
  * Anej Mužič 
  * Adnan Pajalić
