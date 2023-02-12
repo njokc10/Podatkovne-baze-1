@@ -17,4 +17,5 @@ def glavna_stran():
     podatki = glavni_model.dobi_vse_uporabnike()
     return bottle.template("glavna.html", uporabniki=podatki)
 
+# Pozenemo spletni
 bottle.run(debug=True, reloader=True)
