@@ -15,8 +15,8 @@ glavni_model = model.Model()
 # To je dekorator. Ko pridemo na mesto z naslovom "/" se pozene funkcija glavna_stran
 @bottle.route("/")
 def glavna_stran():
-    podatki = glavni_model.dobi_vse_uporabnike()
-    return bottle.template("glavna.html", uporabniki=podatki)
+    podatki = glavni_model.dobi_vse_avte()
+    return bottle.template("glavna.html", avtomobili=podatki)
 
 @bottle.route("/prijava")
 def prijava():

@@ -11,9 +11,9 @@ conn = sqlite3.connect("baza.sqlite3")
 baza.pripravi_bazo(conn)
 
 class Model:
-    def dobi_vse_uporabnike(self):
+    def dobi_vse_avte(self):
         with conn:
             cur = conn.execute("""
-                SELECT * FROM uporabnik
+                SELECT * FROM Avto
             """)
             return cur.fetchall()
