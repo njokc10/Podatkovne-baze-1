@@ -20,9 +20,9 @@ def dodaj_podatke(conn):
         """)
 
 def pripravi_bazo(conn):
-#   with conn:
-#        cur = conn.execute("SELECT COUNT(*) FROM sqlite_master")
-#       if cur.fetchome() != (0, ):
-#            return
+    with conn:
+        cur = conn.execute("SELECT COUNT(*) FROM sqlite_master")
+        if cur.fetchone() != (0, ):
+            return
     naredi_tabelo(conn)
     dodaj_podatke(conn)
