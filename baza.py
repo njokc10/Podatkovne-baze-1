@@ -1,4 +1,4 @@
-def ustvari_tabele(conn):
+def naredi_tabelo(conn):
     with conn:
         conn.execute(
             """
@@ -11,7 +11,7 @@ def ustvari_tabele(conn):
             """
         )
 
-def napolni_nujne_podatke(conn):
+def dodaj_podatke(conn):
     with conn:
         conn.execute("""
         INSERT INTO uporabnik 
@@ -19,7 +19,10 @@ def napolni_nujne_podatke(conn):
         ("email@email.com", "Neko ime")
         """)
 
-
-def pripravi_vse(conn):
-    ustvari_tabele(conn)
-    napolni_nujne_podatke(conn)
+def pripravi_bazo(conn):
+#   with conn:
+#        cur = conn.execute("SELECT COUNT(*) FROM sqlite_master")
+#       if cur.fetchome() != (0, ):
+#            return
+    naredi_tabelo(conn)
+    dodaj_podatke(conn)

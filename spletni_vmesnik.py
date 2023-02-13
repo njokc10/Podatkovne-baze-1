@@ -3,19 +3,28 @@ import model
 
 glavni_model = model.Model()
 
-@bottle.route("/static/img/<filename>")
-def serve_static_file_img(filename):
-    return bottle.static_file(filename, root="./static/img")
-
-@bottle.route("/static/css/<filename>")
-def serve_static_file_css(filename):
-    return bottle.static_file(filename, root="./static/css")
+#def password_md5(s):
+#    '''
+#    Vrni MD5 hash danega UTF-8 niza. Gesla vedno spravimo v bazo
+#    kodirana s to funkcijo.
+#    '''
+#    h = hashlib.md5()
+#    h.update(s.encode('utf-8'))
+#    return h.hexdigest()
 
 # To je dekorator. Ko pridemo na mesto z naslovom "/" se pozene funkcija glavna_stran
 @bottle.route("/")
 def glavna_stran():
     podatki = glavni_model.dobi_vse_uporabnike()
     return bottle.template("glavna.html", uporabniki=podatki)
+
+@bottle.route("/prijava")
+def prijava():
+    return bottle.template('prijava.html')
+
+@bottle.route("/registracija")
+def registracija():
+    return bottle.template('registracija.html')
 
 # Pozenemo spletni
 bottle.run(debug=True, reloader=True)

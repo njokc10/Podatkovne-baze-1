@@ -36,10 +36,11 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item"> Home </a>
+            <a class="navbar-item" href="/"> Domov </a>
 
-            <a class="navbar-item"> Documentation </a>
+            <a class="navbar-item"> Mnenja </a>
 
+            <!--
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"> More </a>
 
@@ -51,15 +52,21 @@
                 <a class="navbar-item"> Report an issue </a>
               </div>
             </div>
+            -->
           </div>
 
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
+                <a
+                  class="button is-primary"
+                  href="/registracija"
+                  onclick="document.getElementById('id01').style.display='block'"
+                  style="width: auto"
+                >
+                  <strong> Registracija </strong>
                 </a>
-                <a class="button is-light"> Log in </a>
+                <a class="button is-light" href="/prijava"> Prijava </a>
               </div>
             </div>
           </div>
@@ -71,6 +78,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
+          <!--
           <strong>Bulma</strong> by
           <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
           licensed
@@ -79,6 +87,8 @@
           <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
             >CC BY NC SA 4.0</a
           >.
+          -->
+          CopyRights&copy;2023, Anej Mužič & Adnan Pajalić
         </p>
       </div>
     </footer>

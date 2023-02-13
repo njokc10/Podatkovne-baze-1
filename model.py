@@ -8,7 +8,7 @@ conn = sqlite3.connect("baza.sqlite3")
 
 #TODO Ustvarimo bazo
 
-baza.pripravi_vse(conn)
+baza.pripravi_bazo(conn)
 
 class Model:
     def dobi_vse_uporabnike(self):
@@ -16,5 +16,4 @@ class Model:
             cur = conn.execute("""
                 SELECT * FROM uporabnik
             """)
-
             return cur.fetchall()
