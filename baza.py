@@ -71,3 +71,5 @@ def pripravi_bazo(conn):
             return
     naredi_tabelo(conn)
     dodaj_podatke(conn)
+
+#PROBLEM Z JAJČKI#
