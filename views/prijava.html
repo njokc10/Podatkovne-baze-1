@@ -140,7 +140,7 @@
 
 <body>
   <div id="id01" class="modal">
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate" method="post">
       <div class="container">
         <label for="uname"><b>Uporabniško ime</b></label>
         <input
@@ -159,19 +159,21 @@
         />
 
         <button type="submit">Prijavi se</button>
-        <label>
+        <!--<label>
           <input type="checkbox" checked="checked" name="remember" /> Zapomni se
-        </label>
+        </label> -->
       </div>
 
       <div class="container" style="background-color: #f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id01').style.display='none'"
-          class="cancelbtn"
+        <a href="/">
+          <button
+            type="button"
+            onclick="document.getElementById('id01').style.display='none'"
+            class="cancelbtn"
+          >
+            Prekliči
+          </button></a
         >
-          Prekliči
-        </button>
         <span class="psw"><a href="#">Pozabljeno geslo?</a></span>
       </div>
     </form>
