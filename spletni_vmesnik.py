@@ -16,7 +16,8 @@ glavni_model = model.Model()
 @bottle.route("/")
 def glavna_stran():
     podatki = glavni_model.dobi_vse_avte()
-    return bottle.template("glavna.html", avtomobili=podatki)
+    podatki1 = glavni_model.dobi_vse_znamke()
+    return bottle.template("glavna.html", avtomobili=podatki, znamke=podatki1)
 
 @bottle.route("/prijava")
 def prijava():

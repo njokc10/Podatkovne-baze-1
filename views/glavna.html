@@ -1,0 +1,18 @@
+% rebase('osnova.html')
+
+<h1>To je moja spletna stran</h1>
+
+<h2>Vsi uporabniki so trenutno</h2>
+<img src="/static/img/bmw.png" alt="to je kia" style="display: block;">
+
+<select name="znamka" class="custom-select">
+  % for znamka in znamke:
+  <option value="{{znamka}}">{{ znamka }}</option>
+  % end
+</select>
+
+<ul>
+  % for avto in avtomobili:
+  <li>{{ avto }}</li>
+  % end
+</ul>

@@ -17,3 +17,11 @@ class Model:
                 SELECT * FROM Avto
             """)
             return cur.fetchall()
+
+    def dobi_vse_znamke(self):
+        with conn:
+            cur = conn.execute("""
+            SELECT ime FROM Znamka
+            """)
+            return cur.fetchall()
+    

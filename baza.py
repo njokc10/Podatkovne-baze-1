@@ -54,7 +54,7 @@ def naredi_tabelo(conn):
         ),
         conn.execute(
             """CREATE TABLE IF NOT EXISTS Znamka (id INTEGER PRIMARY KEY,
-                lastnik TEXT)
+                ime TEXT)
             """
         ),
         conn.execute(
@@ -80,6 +80,16 @@ def dodaj_podatke(conn):
                 insert into Avto(cena, barva, moc_motorja, poraba) 
                 values(:cena, :barva, :moc_motorja, :poraba)
                 """, {"cena":cena, "barva":barva, "moc_motorja":moc_motorja, "poraba":poraba})
+    
+        conn.execute(
+            """
+            INSERT INTO Znamka (ime) VALUES ('Hyundai')
+            """
+        )
+
+        conn.execute(
+            """INSERT INTO Znamka (ime) VALUES ('Alfa Romeo')""")
+        
 
 
 def pripravi_bazo(conn):
