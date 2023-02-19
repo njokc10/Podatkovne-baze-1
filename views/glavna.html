@@ -1,21 +1,5 @@
 % rebase('osnova.html')
 
-<!--
-<style>
-  .container {
-    background-image: url(../static/img/slika.jpeg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: #999;
-  }
-</style>
-
-<h1>To je moja spletna stran</h1>
-
-<div class="bg-img"></div>
--->
 <style>
   #overview {
     width: 100vw;
@@ -24,7 +8,7 @@
       border-box; */
     /* background-image: linear-gradient(to left top, red 30%, yellow 30%, blue); */
     background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
-      url("/static/slika1.webp") center / cover no-repeat border-box, #ff1b68;
+      url("/static/slika.webp") center / cover no-repeat border-box, #ff1b68;
     position: relative;
   }
 
@@ -36,6 +20,66 @@
   .title {
     font-size: 3.5em;
   }
+
+  .sub-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  @import "bourbon";
+
+  .main-content-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 30px;
+    /*background: green;*/
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 250px;
+  }
+
+  .content-container {
+    height: 80px;
+    margin: 25px 1em;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*   background: lightyellow; */
+    flex: 0 1 20%;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    .main-content-container {
+      padding: 8px;
+    }
+    .container {
+      flex: 0 1 15%;
+    }
+  }
+
+  .image-caption {
+    /*background: skyblue;*/
+    margin: 0;
+    text-align: center;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  #search-cars {
+    margin: 80px 0 100px 0;
+    text-align: center;
+  }
+
+  .search-car {
+    padding: 0 10px;
+  }
 </style>
 
 <section id="overview">
@@ -45,165 +89,99 @@
   </div>
 </section>
 
-<!--
-<select id="make" name="znamka" class="custom-select">
-  <option value="">Vse znamke</option>
-  <option value="" disabled>- Najpopularnejše znamke:</option>
-  <option value="Audi">Audi</option>
-  <option value="BMW">BMW</option>
-  <option value="Citroen">Citroen</option>
-  <option value="Ford">Ford</option>
-  <option value="Mercedes-Benz">Mercedes-Benz</option>
-  <option value="Opel">Opel</option>
-  <option value="Peugeot">Peugeot</option>
-  <option value="Renault">Renault</option>
-  <option value="Škoda">Škoda</option>
-  <option value="Volkswagen">Volkswagen</option>
-  <option value="" disabled>- Vse znamke:</option>
-  <option value="Abarth" foo="100">Abarth</option>
-  <option value="AEV" foo="150">AEV</option>
-</select>
+<section id="search-cars">
+  <h1 class="sub-title">Poišči svoj avtomobil:</h1>
 
-<select id="model" name="model" class="custom-select">
-  <option value="">Vsi modeli</option>
-  <option value="60" class="Audi">60</option>
-  <option value="80" class="Audi">80</option>
-  <option value="90" class="Audi">90</option>
-  <option value="100" class="Audi">100</option>
-  <option value="200" class="Audi">200</option>
-  <option value="A1 (vsi)" class="Audi vsi">A1 (vsi)</option>
-  <option value="A1" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A1</option>
-  <option value="S1" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S1</option>
-  <option value="A2" class="Audi">A2</option>
-  <option value="A3 (vsi)" class="Audi vsi">A3 (vsi)</option>
-  <option value="A3" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A3</option>
-  <option value="A3---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A3 Cabriolet
-  </option>
-  <option value="S3" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S3</option>
-  <option value="S3---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;S3 Cabriolet
-  </option>
-  <option value="RS3" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS3</option>
-  <option value="A4 (vsi)" class="Audi vsi">A4 (vsi)</option>
-  <option value="A4" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A4</option>
-  <option value="A4---Avant" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A4 Avant
-  </option>
-  <option value="A4---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A4 Cabriolet
-  </option>
-  <option value="A4---Allroad" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A4 Allroad
-  </option>
-  <option value="S4" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S4</option>
-  <option value="S4---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;S4 Cabriolet
-  </option>
-  <option value="RS4" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS4</option>
-  <option value="A5 (vsi)" class="Audi vsi">A5 (vsi)</option>
-  <option value="A5" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A5</option>
-  <option value="A5---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A5 Cabriolet
-  </option>
-  <option value="A5---Sportback" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A5 Sportback
-  </option>
-  <option value="S5" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S5</option>
-  <option value="S5---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;S5 Cabriolet
-  </option>
-  <option value="S5---Sportback" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;S5 Sportback
-  </option>
-  <option value="RS5" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS5</option>
-  <option value="RS5---Cabriolet" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;RS5 Cabriolet
-  </option>
-  <option value="A6 (vsi)" class="Audi vsi">A6 (vsi)</option>
-  <option value="A6" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A6</option>
-  <option value="A6---Avant" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A6 Avant
-  </option>
-  <option value="A6---Allroad" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;A6 Allroad
-  </option>
-  <option value="S6" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S6</option>
-  <option value="RS6" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS6</option>
-  <option value="A7 (vsi)" class="Audi vsi">A7 (vsi)</option>
-  <option value="A7" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A7</option>
-  <option value="S7" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S7</option>
-  <option value="RS7" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS7</option>
-  <option value="A8 (vsi)" class="Audi vsi">A8 (vsi)</option>
-  <option value="A8" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;A8</option>
-  <option value="S8" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;S8</option>
-  <option value="Coupe" class="Audi">Coupe</option>
-  <option value="Cabriolet" class="Audi">Cabriolet</option>
-  <option value="E-Tron" class="Audi">E-Tron</option>
-  <option value="E-Tron GT" class="Audi">E-Tron GT</option>
-  <option value="E-Tron Sportback" class="Audi">E-Tron Sportback</option>
-  <option value="Q1" class="Audi">Q1</option>
-  <option value="Q2 (vsi)" class="Audi vsi">Q2 (vsi)</option>
-  <option value="Q2" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;Q2</option>
-  <option value="SQ2" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;SQ2</option>
-  <option value="Q3 (vsi)" class="Audi vsi">Q3 (vsi)</option>
-  <option value="Q3" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;Q3</option>
-  <option value="Q3 Sportback" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;Q3 Sportback
-  </option>
-  <option value="RS Q3" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS Q3</option>
-  <option value="RS Q3 Sportback" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;RS Q3 Sportback
-  </option>
-  <option value="Q4 (vsi)" class="Audi vsi">Q4 (vsi)</option>
-  <option value="Q4 e-tron" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;Q4 e-tron
-  </option>
-  <option value="Q4 Sportback e-tron" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;Q4 Sportback e-tron
-  </option>
-  <option value="Q5 (vsi)" class="Audi vsi">Q5 (vsi)</option>
-  <option value="Q5" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;Q5</option>
-  <option value="Q5 Sportback" class="Audi">
-    &nbsp;&nbsp;&nbsp;&nbsp;Q5 Sportback
-  </option>
-  <option value="SQ5" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;SQ5</option>
-  <option value="Q7 (vsi)" class="Audi vsi">Q7 (vsi)</option>
-  <option value="Q7" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;Q7</option>
-  <option value="SQ7" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;SQ7</option>
-  <option value="Q8 (vsi)" class="Audi vsi">Q8 (vsi)</option>
-  <option value="Q8" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;Q8</option>
-  <option value="SQ8" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;SQ8</option>
-  <option value="RS Q8" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;RS Q8</option>
-  <option value="R8" class="Audi">R8</option>
-  <option value="RS2" class="Audi">RS2</option>
-  <option value="S2" class="Audi">S2</option>
-  <option value="TT (vsi)" class="Audi vsi">TT (vsi)</option>
-  <option value="TT" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;TT</option>
-  <option value="TTS" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;TTS</option>
-  <option value="TT RS" class="Audi">&nbsp;&nbsp;&nbsp;&nbsp;TT RS</option>
-  <option value="V8" class="Audi">V8</option>
-  <option value="modela ni na seznamu" class="Audi">
-    modela ni na seznamu
-  </option>
-  <option value="Metro" class="Austin">Metro</option>
-</select>
+  <form action="" method="post">
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="znamka">
+        <option value="">-- Vse znamke --</option>
+        % for znamka in znamke:
+        <option value="{{ znamka.znamka }}">{{ znamka.znamka }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="model" class="select is-rounded" required>
+        <option value="">-- Modeli --</option>
+        % for model in modeli:
+        <option value="{{ model.model }}">{{ model.model }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="gorivo" class="select is-rounded" required>
+        <option value="">-- Gorivo --</option>
+        % for g in gorivo:
+        <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="menjalnik" class="select is-rounded" required>
+        <option value="">-- Tip menjalnika --</option>
+        % for m in menjalnik:
+        <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
+        % end
+      </select>
+    </div>
+    <a href="/specifikacije"
+      ><button class="search-car button is-primary is-rounded" type="submit">
+        Prikaži
+      </button></a
+    >
+  </form>
+</section>
 
-<button
-  type="submit"
-  name="B1"
-  value="1"
-  class="btn btn-block GO-Button-Orange h-100 text-center py-0"
->
-  <i class="fa fa-search px-2"></i
-  ><span class="px-3 float-left">Iskanje vozil</span>
-</button>
-
-
-
-<ul>
-  % for avto in avtomobili:
-  <li>{{ avto }}</li>
-  % end
-</ul>
--->
+<section id="brands-showcase">
+  <div class="main-content-container">
+    <div class="content-container">
+      <a href="https://www.audi.si/" target="_blank"
+        ><img src="/static/audi.png" alt="" />
+        <p class="image-caption">AUDI</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://www.bmw.si/sl/index.html" target="_blank"
+        ><img src="/static/bmw.png" alt="" />
+        <p class="image-caption">BMW</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://www.ferrari.com/en-EN" target="_blank"
+        ><img src="/static/ferrari.png" alt="" />
+        <p class="image-caption">FERRARI</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://ford.si/" target="_blank"
+        ><img src="/static/ford.png" alt="" />
+        <p class="image-caption">FORD</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://www.mazda.si/" target="_blank"
+        ><img src="/static/mazda.png" alt="" />
+        <p class="image-caption">MAZDA</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://www.mercedes-benz.si/" target="_blank"
+        ><img src="/static/mercedes.png" alt="" />
+        <p class="image-caption">MERCEDES</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://www.nissan.si/" target="_blank"
+        ><img src="/static/nissan.png" alt="" />
+        <p class="image-caption">NISSAN</p></a
+      >
+    </div>
+    <div class="content-container">
+      <a href="https://dealer.porsche.com/si/ljubljana" target="_blank"
+        ><img src="/static/porsche.png" alt="" />
+        <p class="image-caption">PORSCHE</p></a
+      >
+    </div>
+  </div>
+</section>

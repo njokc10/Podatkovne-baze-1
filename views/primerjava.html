@@ -1,0 +1,41 @@
+% rebase('osnova.html', napaka=None)
+
+<form action="" method="post">
+  <div class="search-car select is-rounded is-primary">
+    <select id="make" name="znamka">
+      <option value="">-- Vse znamke --</option>
+      % for znamka in znamke:
+      <option value="{{ znamka.znamka }}">{{ znamka.znamka }}</option>
+      % end
+    </select>
+  </div>
+  <div class="search-car select is-rounded is-primary">
+    <select id="make" name="model" class="select is-rounded" required>
+      <option value="">-- Modeli --</option>
+      % for model in modeli:
+      <option value="{{ model.model }}">{{ model.model }}</option>
+      % end
+    </select>
+  </div>
+  <div class="search-car select is-rounded is-primary">
+    <select id="make" name="gorivo" class="select is-rounded" required>
+      <option value="">-- Gorivo --</option>
+      % for g in gorivo:
+      <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
+      % end
+    </select>
+  </div>
+  <div class="search-car select is-rounded is-primary">
+    <select id="make" name="menjalnik" class="select is-rounded" required>
+      <option value="">-- Tip menjalnika --</option>
+      % for m in menjalnik:
+      <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
+      % end
+    </select>
+  </div>
+  <a href="/specifikacije"
+    ><button class="search-car button is-primary is-rounded" type="submit">
+      Primerjaj
+    </button></a
+  >
+</form>

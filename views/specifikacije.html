@@ -1,0 +1,75 @@
+% rebase('osnova.html')
+
+<style>
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .table {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<div class="container">
+  % for model in model_url_naslov:
+  <img src="{{ model.url_naslov }}" alt="avto" />
+  % end
+  <table class="table">
+    <thead>
+      <tr>
+        <th>OSNOVNI PODATKI</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th>Znamka:</th>
+        <td>{{ znamka }}</td>
+      </tr>
+      <tr>
+        <th>Model:</th>
+        <td>{{ model_ }}</td>
+      </tr>
+      <tr>
+        <th>Pogon:</th>
+        <td>{{ model_ }}</td>
+      </tr>
+      <tr>
+        <th>Gorivo:</th>
+        <td>{{ gorivo }}</td>
+      </tr>
+      <tr>
+        <th>Menjalnik:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Tip motorja:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Moč motorja:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Navor:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Število prestav:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Mestna poraba:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+      <tr>
+        <th>Poraba izven naselja:</th>
+        <td>{{ menjalnik }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

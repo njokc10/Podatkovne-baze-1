@@ -158,10 +158,13 @@
           required
         />
 
+        <div>
+          %if napaka:
+          <p>{{ napaka }}</p>
+          %end
+        </div>
+
         <button type="submit">Prijavi se</button>
-        <!--<label>
-          <input type="checkbox" checked="checked" name="remember" /> Zapomni se
-        </label> -->
       </div>
 
       <div class="container" style="background-color: #f1f1f1">
