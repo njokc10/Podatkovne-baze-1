@@ -115,12 +115,18 @@ class Avto:
         return []
     
     @staticmethod
-    def dobi_avto_za_model(model):
+    def dobi_avto_za_model(model, gorivo, menjalnik):
         with conn:
-            model_id = conn.execute('''SELECT id FROM modeli WHERE model=?''', [model])
-            cursor = conn.execute("""
-                SELECT * FROM Avto WHERE model_id=?
-            """, [model_id])
+            model_i = conn.execute("""SELECT id FROM modeli WHERE model=?""", [model])
+            podatki1 = list(model_i.fetchall())
+            model_id = [elt[0] for elt in podatki1]
+            gorivo_i = conn.execute("""SELECT id FROM gorivo WHERE tip_goriva=?""", [gorivo])
+            podatki2 = list(gorivo_i.fetchall())
+            gorivo_id = [elt[0] for elt in podatki2]
+            menjalnik_i = conn.execute("""SELECT id FROM menjalnik WHERE tip_menjalnika=?""", [menjalnik])
+            podatki3 = list(menjalnik_i.fetchall())
+            menjalnik_id = [elt[0] for elt in podatki3]
+            cursor = conn.execute("""SELECT * FROM avto WHERE (model_id=? AND menjalnik_id=? AND gorivo_id=?);""", [model_id[0], gorivo_id[0], menjalnik_id[0]])
             podatki = list(cursor.fetchall())
             return [Avto(pod[0], pod[1], pod[2], pod[3], pod[4], pod[5], pod[6], pod[7], pod[8], pod[9], pod[10], pod[11], pod[12], pod[13]) for pod in podatki]
         return []
@@ -167,13 +173,12 @@ class Uporabnik:
             return None
         
 class Komentar:
-    def __init__ (self, znamka, model, uporabnik, datum, ura, opis):
+    def __init__ (self, uporabnik, cas, opis, znamka, model):
+        self.uporabnik = uporabnik
+        self.cas = cas
+        self.opis = opis
         self.znamka = znamka
         self.model = model
-        self.uporabnik = uporabnik
-        self.datum = datum
-        self.ura = ura
-        self.opis = opis
 
     # Vrni vse komentarje iz baze za doloceno znamko in model. Če oseba ni prijavljena vrni napako: 
     # "Oops! Prišlo je do napake. Pred oddajo komentarja se je potrebno prijaviti!"
@@ -184,7 +189,7 @@ class Komentar:
                 SELECT * FROM komentar WHERE znamka=? AND model=?
             """, [znamka, model])
             podatki = list(cursor.fetchall())
-            return [Komentar(pod[0], pod[1], pod[2], pod[3], pod[4], pod[5]) for pod in podatki]
+            return [Komentar(pod[0], pod[1], pod[2], pod[3], pod[4]) for pod in podatki]
         return []
 
     # Shrani komentar v bazo za doloceno znamko in model
@@ -192,7 +197,7 @@ class Komentar:
         '''Shrani komentar v bazo'''
         with conn:
             conn.execute("""
-            INSERT INTO komentar (znamka, model, uporabnik, datum, ura, opis) VALUES (?,?,?,?,?,?)
-            """, [self.znamka, self.model, self.uporabnik, self.datum, self.ura, self.opis])
+            INSERT INTO komentar (uporabnik, cas, opis, znamka, model) VALUES (?,?,?,?,?)
+            """, [self.uporabnik, self.cas, self.opis, self.znamka, self.model])
     
     # Izbriši komentar iz baze za dolocen ID

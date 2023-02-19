@@ -1,6 +1,7 @@
 import bottle
 import model
 import hashlib
+from datetime import date
 
 def geslo_md5(s):
     '''Vrne MD5 hash danega UTF-8 niza.'''
@@ -29,7 +30,8 @@ def glavna_stran_post():
     menjalnik = bottle.request.forms.menjalnik
     # Napisi poizvedbe in poslji na stran specifikacije
     model_url_naslov = model.Modeli.dobi_podatke_za_model(model_)
-    return bottle.template('specifikacije.html', znamka=znamka, model_=model_, gorivo=gorivo, menjalnik=menjalnik, model_url_naslov=model_url_naslov)
+    podatki_avto = model.Avto.dobi_avto_za_model(model_, gorivo, menjalnik)
+    return bottle.template('specifikacije.html', znamka=znamka, model_=model_, gorivo=gorivo, menjalnik=menjalnik, model_url_naslov=model_url_naslov, podatki_avto=podatki_avto)
 
 @bottle.route("/mnenja")
 def mnenja_stran():
@@ -38,30 +40,36 @@ def mnenja_stran():
     modeli = model.Modeli.dobi_vse_modele()
     return bottle.template("mnenja.html", znamke=znamke, modeli=modeli)
 
-@bottle.route("/primerjava")
+@bottle.post("/mnenja")
+def mnenja_stran_post():
+    '''Obdelaj izpolnjeno formo za oddajo komentarja'''
+    znamka = bottle.request.forms.znamka
+    model_ = bottle.request.forms.model
+    # Napisi poizvedbe in poslji na stran komentar
+    return bottle.template("komentar.html", znamke=znamka, modeli=model_)
+
+# POPRAVI
+@bottle.post("/komentar")
 def mnenja_stran():
     '''Vrne stran primerjava'''
-    return bottle.template("primerjava.html")
+    # opis
+    text = bottle.request.forms.komentar
+    znamka = bottle.request.forms.znamka
+    model_ = bottle.request.forms.model
+    # uporabnik
+    up = bottle.request.get_cookie('uporabniskoIme', secret=secret)
+    if up is not None:
+        # cas
+        trenuten_datum = date.today()
+        # Shrani v bazo
+        model.Komentar(text, up, trenuten_datum, znamka, model_).shrani_komentar()
+        bottle.redirect("komentar.html")
+    
 
 @bottle.route("/specifikacije")
 def mnenja_stran():
     '''Vrne stran specifikacije'''
     return bottle.template("specifikacije.html")
-
-#@bottle.post('/specifikacije')
-#def specifikacije_post():
-#    '''Obdelaj izpolnjeno formo za prijavo'''
-#    # Uporabniško ime
-#    uporabnisko_ime = bottle.request.forms.uname
-#    # Geslo (zakodiramo)
-#    geslo = geslo_md5(bottle.request.forms.psw)
-#    # Preverimo, ali se je uporabnik pravilno prijavil
-#    poizvedba = model.Uporabnik.pravilen_vnos(uporabnisko_ime, geslo)
-#    if poizvedba is None:
-#        # Uporabnisko ime in geslo se ne ujemata
-#        return bottle.template('prijava.html', napaka='Uporabnik ne obstaja!')
-#    else:
-#        bottle.redirect('/specifikacije')
 
 @bottle.route('/static/<filename:path>')
 def static(filename):

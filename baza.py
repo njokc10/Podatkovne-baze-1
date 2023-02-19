@@ -65,10 +65,11 @@ def naredi_tabelo(conn):
         # KOMENTAR
         conn.execute(
             """CREATE TABLE IF NOT EXISTS komentar (id INTEGER PRIMARY KEY,
+                uporabnik TEXT,
                 cas TIMESTAMP,
                 opis TEXT,
-                model_id INTEGER,
-                FOREIGN KEY(model_id) REFERENCES modeli(id)
+                znamka TEXT,
+                model TEXT
             """)
 
 def pridobi_sliko(link):

@@ -4,6 +4,7 @@
   .container {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 200px;
   }
 
   .table {
@@ -11,65 +12,75 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .data-container {
+    display: inline-block;
+    margin: 0 50px 0 50px;
+  }
 </style>
 
 <div class="container">
   % for model in model_url_naslov:
   <img src="{{ model.url_naslov }}" alt="avto" />
   % end
-  <table class="table">
-    <thead>
-      <tr>
-        <th>OSNOVNI PODATKI</th>
-        <th></th>
-      </tr>
-    </thead>
+  <h1></h1>
+  % for avto in podatki_avto:
+  <div class="data-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>OSNOVNI PODATKI</th>
+          <th></th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <th>Znamka:</th>
-        <td>{{ znamka }}</td>
-      </tr>
-      <tr>
-        <th>Model:</th>
-        <td>{{ model_ }}</td>
-      </tr>
-      <tr>
-        <th>Pogon:</th>
-        <td>{{ model_ }}</td>
-      </tr>
-      <tr>
-        <th>Gorivo:</th>
-        <td>{{ gorivo }}</td>
-      </tr>
-      <tr>
-        <th>Menjalnik:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Tip motorja:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Moč motorja:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Navor:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Število prestav:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Mestna poraba:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-      <tr>
-        <th>Poraba izven naselja:</th>
-        <td>{{ menjalnik }}</td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr>
+          <th>Znamka:</th>
+          <td>{{ znamka }}</td>
+        </tr>
+        <tr>
+          <th>Model:</th>
+          <td>{{ model_ }}</td>
+        </tr>
+        <tr>
+          <th>Pogon:</th>
+          <td>{{ model_ }}</td>
+        </tr>
+        <tr>
+          <th>Gorivo:</th>
+          <td>{{ gorivo }}</td>
+        </tr>
+        <tr>
+          <th>Menjalnik:</th>
+          <td>{{ menjalnik }}</td>
+        </tr>
+        <tr>
+          <th>Tip motorja:</th>
+          <td>{{ avto.tip_motorja }}</td>
+        </tr>
+        <tr>
+          <th>Moč motorja:</th>
+          <td>{{ avto.moc_motorja }} HP</td>
+        </tr>
+        <tr>
+          <th>Navor:</th>
+          <td>{{ avto.navor }} Nm</td>
+        </tr>
+        <tr>
+          <th>Število prestav:</th>
+          <td>{{ avto.stevilo_prestav }} stopenjski</td>
+        </tr>
+        <tr>
+          <th>Mestna poraba:</th>
+          <td>od {{ avto.mestna_poraba }} l / 100km</td>
+        </tr>
+        <tr>
+          <th>Poraba izven naselja:</th>
+          <td>{{ avto.avtocestna_poraba }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  %end
 </div>
