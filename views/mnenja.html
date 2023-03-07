@@ -1,4 +1,4 @@
-% rebase('osnova.html')
+% rebase('osnova.html', trenutni_uporabnik=trenutni_uporabnik)
 
 <style>
   #search-cars {
@@ -36,15 +36,19 @@
 <form action="" method="post">
   <section id="search-cars">
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="znamka" required>
-        <option value="">-- Vse znamke --</option>
+      <select id="make" name="znamka" onchange="this.form.submit()">
+        <option value="0">-- Vse znamke --</option>
         % for znamka in znamke:
-        <option value="{{ znamka.znamka }}">{{ znamka.znamka }}</option>
+            % if str(znamka.id) == _znamka:
+                <option value="{{ znamka.id }}" selected> {{ znamka.znamka }}</option>
+            % else:
+                <option value="{{ znamka.id }}"> {{ znamka.znamka }}</option>
+            % end
         % end
       </select>
     </div>
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="model" class="select is-rounded" required>
+      <select id="make" name="model" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required>
         <option value="">-- Modeli --</option>
         % for model in modeli:
         <option value="{{ model.model }}">{{ model.model }}</option>

@@ -1,41 +1,105 @@
 % rebase('osnova.html', napaka=None)
 
+<style>
+  .search-menu,
+  .submit-button {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .search-car {
+    padding: 0 10px;
+  }
+
+  .search-menu-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+</style>
+
 <form action="" method="post">
-  <div class="search-car select is-rounded is-primary">
-    <select id="make" name="znamka">
-      <option value="">-- Vse znamke --</option>
-      % for znamka in znamke:
-      <option value="{{ znamka.znamka }}">{{ znamka.znamka }}</option>
-      % end
-    </select>
+  <div class="search-menu">
+    <h1 class="search-menu-title">Avtomobil 1</h1>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="znamka_0" onchange="this.form.submit()">
+        <option value="0">-- Vse znamke --</option>
+        % for znamka in znamke:
+            % if str(znamka.id) == _znamka_0:
+                <option value="{{ znamka.id }}" selected> {{ znamka.znamka }}</option>
+            % else:
+                <option value="{{ znamka.id }}"> {{ znamka.znamka }}</option>
+            % end
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="model_0" class="select is-rounded" required>
+        <option value="">-- Modeli --</option>
+        % for model in _modeli_0:
+        <option value="{{ model.model }}">{{ model.model }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="gorivo_0" class="select is-rounded" required>
+        <option value="">-- Gorivo --</option>
+        % for g in gorivo:
+        <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="menjalnik_0" class="select is-rounded" required>
+        <option value="">-- Tip menjalnika --</option>
+        % for m in menjalnik:
+        <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
+        % end
+      </select>
+    </div>
   </div>
-  <div class="search-car select is-rounded is-primary">
-    <select id="make" name="model" class="select is-rounded" required>
-      <option value="">-- Modeli --</option>
-      % for model in modeli:
-      <option value="{{ model.model }}">{{ model.model }}</option>
-      % end
-    </select>
+
+  <div class="search-menu">
+    <h1 class="search-menu-title">Avtomobil 2</h1>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="znamka_1" onchange="this.form.submit()">
+        <option value="0">-- Vse znamke --</option>
+        % for znamka in znamke:
+            % if str(znamka.id) == _znamka_1:
+                <option value="{{ znamka.id }}" selected> {{ znamka.znamka }}</option>
+            % else:
+                <option value="{{ znamka.id }}"> {{ znamka.znamka }}</option>
+            % end
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="model_1" class="select is-rounded" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required>
+        <option value="">-- Modeli --</option>
+        % for model in _modeli_1:
+        <option value="{{ model.model }}">{{ model.model }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="gorivo_1" class="select is-rounded" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required>
+        <option value="">-- Gorivo --</option>
+        % for g in gorivo:
+        <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
+        % end
+      </select>
+    </div>
+    <div class="search-car select is-rounded is-primary">
+      <select id="make" name="menjalnik_1" class="select is-rounded" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required>
+        <option value="">-- Tip menjalnika --</option>
+        % for m in menjalnik:
+        <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
+        % end
+      </select>
+    </div>
   </div>
-  <div class="search-car select is-rounded is-primary">
-    <select id="make" name="gorivo" class="select is-rounded" required>
-      <option value="">-- Gorivo --</option>
-      % for g in gorivo:
-      <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
-      % end
-    </select>
-  </div>
-  <div class="search-car select is-rounded is-primary">
-    <select id="make" name="menjalnik" class="select is-rounded" required>
-      <option value="">-- Tip menjalnika --</option>
-      % for m in menjalnik:
-      <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
-      % end
-    </select>
-  </div>
-  <a href="/specifikacije"
-    ><button class="search-car button is-primary is-rounded" type="submit">
+  <div class="submit-button">
+    <button class="search-car button is-primary is-rounded" type="submit">
       Primerjaj
-    </button></a
-  >
+    </button>
+  </div>
 </form>

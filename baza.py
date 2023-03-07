@@ -64,12 +64,12 @@ def naredi_tabelo(conn):
             """),
         # KOMENTAR
         conn.execute(
-            """CREATE TABLE IF NOT EXISTS komentar (id INTEGER PRIMARY KEY,
-                uporabnik TEXT,
+            """CREATE TABLE IF NOT EXISTS komentar (
+                id INTEGER PRIMARY KEY,
                 cas TIMESTAMP,
                 opis TEXT,
-                znamka TEXT,
-                model TEXT
+                model TEXT,
+                uporabnik TEXT)
             """)
 
 def pridobi_sliko(link):

@@ -1,4 +1,4 @@
-% rebase('osnova.html')
+% rebase('osnova.html', trenutni_uporabnik=trenutni_uporabnik)
 
 <style>
   .container {
@@ -24,7 +24,6 @@
   <img src="{{ model.url_naslov }}" alt="avto" />
   % end
   <h1></h1>
-  % for avto in podatki_avto:
   <div class="data-container">
     <table class="table">
       <thead>
@@ -37,14 +36,12 @@
       <tbody>
         <tr>
           <th>Znamka:</th>
-          <td>{{ znamka }}</td>
+          %for z in znamka:
+          <td>{{ z.znamka }}</td>
+          %end
         </tr>
         <tr>
           <th>Model:</th>
-          <td>{{ model_ }}</td>
-        </tr>
-        <tr>
-          <th>Pogon:</th>
           <td>{{ model_ }}</td>
         </tr>
         <tr>
@@ -55,32 +52,61 @@
           <th>Menjalnik:</th>
           <td>{{ menjalnik }}</td>
         </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <th>SPECIFIKACIJE</th>
+        %for avto in podatki_avto:
+        <th></th>
+        %end
+      </thead>
+      <tbody>
+        <tr>
+          <th>Pogon:</th>
+          %for pogon in pogoni:
+          %for p in pogon:
+          <td>{{ p.tip_pogona }}</td>
+          %end
+          %end
+        </tr>
         <tr>
           <th>Tip motorja:</th>
+          %for avto in podatki_avto:
           <td>{{ avto.tip_motorja }}</td>
+          %end
         </tr>
         <tr>
           <th>Moč motorja:</th>
+          %for avto in podatki_avto:
           <td>{{ avto.moc_motorja }} HP</td>
+          %end
         </tr>
         <tr>
           <th>Navor:</th>
+          %for avto in podatki_avto:
           <td>{{ avto.navor }} Nm</td>
+          %end
         </tr>
         <tr>
           <th>Število prestav:</th>
+          %for avto in podatki_avto:
           <td>{{ avto.stevilo_prestav }} stopenjski</td>
+          %end
         </tr>
         <tr>
           <th>Mestna poraba:</th>
-          <td>od {{ avto.mestna_poraba }} l / 100km</td>
+          %for avto in podatki_avto:
+          <td>od {{ avto.mestna_poraba }} MPG</td>
+          %end
         </tr>
         <tr>
           <th>Poraba izven naselja:</th>
-          <td>{{ avto.avtocestna_poraba }}</td>
+          %for avto in podatki_avto:
+          <td>od {{ avto.avtocestna_poraba }} MPG</td>
+          %end
         </tr>
       </tbody>
     </table>
   </div>
-  %end
 </div>

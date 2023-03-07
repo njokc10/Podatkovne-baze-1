@@ -1,4 +1,4 @@
-% rebase('osnova.html')
+% rebase('osnova.html', trenutni_uporabnik=trenutni_uporabnik)
 
 <style>
   .comment-container {
@@ -7,10 +7,55 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .comment {
+    margin-bottom: 50px;
+  }
+
 </style>
 
 <div class="comment-container">
   <section id="comments">
+    % if trenutni_uporabnik:
+      <form class="comment" action="/komentar" method="post">
+        <h1>Podaj komentar za: 
+          <strong>
+          % for z in znamke:
+          {{ z.znamka }} 
+          % end
+          {{ modeli }}
+          </strong>
+        </h1>
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png" />
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <textarea
+                  class="textarea"
+                  placeholder="Dodaj komentar..."
+                  name="komentar"
+                ></textarea>
+              </p>
+            </div>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <button class="button is-info" type="submit">Oddaj</button>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </article>
+        <input type="text" value="{{ modeli }}" name="model" hidden>
+      </form>
+    % else:
+      Komentiranje samo za prijavljene uporabnike.
+    % end
+    % for komentar in komentarji:
     <article class="media">
       <figure class="media-left">
         <p class="image is-64x64">
@@ -19,14 +64,17 @@
       </figure>
       <div class="media-content">
         <div class="content">
-          <p>
-            <strong>John Smith</strong> <small>@johnsmith</small>
-            <small>31m</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-            ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-            non massa sem. Etiam finibus odio quis feugiat facilisis.
-          </p>
+            <p>
+              <strong>{{ komentar.model }}</strong>
+              <br />
+              <!-- European format -->
+              % datum = komentar.uporabnik
+              % dan = datum[-2:]
+              % mesec = datum[4:8]
+              % leto = datum[:4]
+              {{ dan + mesec + leto }}
+              {{ komentar.cas }}
+            </p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
@@ -42,38 +90,7 @@
           </div>
         </nav>
       </div>
-      <div class="media-right">
-        <button class="delete"></button>
-      </div>
     </article>
-
-    <form action="" method="post">
-      <h1>Podaj komentar za: <strong>{{ znamke }} {{ modeli }}</strong></h1>
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png" />
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="field">
-            <p class="control">
-              <textarea
-                class="textarea"
-                placeholder="Dodaj komentar..."
-                name="komentar"
-              ></textarea>
-            </p>
-          </div>
-          <nav class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <button class="button is-info" type="submit">Oddaj</button>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </article>
-    </form>
+    % end
   </section>
 </div>

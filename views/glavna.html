@@ -1,20 +1,12 @@
-% rebase('osnova.html')
+% rebase('osnova.html', trenutni_uporabnik=trenutni_uporabnik)
 
 <style>
-  #overview {
+#overview {
     width: 100vw;
-    height: 60vh;
-    /* background: url("./static/slika.jpeg") left 10% bottom 20% / cover no-repeat
-      border-box; */
-    /* background-image: linear-gradient(to left top, red 30%, yellow 30%, blue); */
+    height: 65vh;
     background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
-      url("/static/slika.webp") center / cover no-repeat border-box, #ff1b68;
+      url("/static/slika1.jpg") left 10% bottom 40% / cover no-repeat border-box, #ff1b68;
     position: relative;
-  }
-
-  .quote {
-    display: inline-block;
-    margin: 5% 0 0 10%;
   }
 
   .title {
@@ -36,8 +28,8 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 250px;
+    margin-top: 20px;
+    margin-bottom: 100px;
   }
 
   .content-container {
@@ -45,7 +37,6 @@
     margin: 25px 1em;
     padding-left: 10px;
     padding-right: 10px;
-    /*   background: lightyellow; */
     flex: 0 1 20%;
     text-align: center;
   }
@@ -60,7 +51,6 @@
   }
 
   .image-caption {
-    /*background: skyblue;*/
     margin: 0;
     text-align: center;
     border-bottom-left-radius: 4px;
@@ -73,7 +63,7 @@
   }
 
   #search-cars {
-    margin: 80px 0 100px 0;
+    margin: 25px 0 50px 0;
     text-align: center;
   }
 
@@ -83,10 +73,6 @@
 </style>
 
 <section id="overview">
-  <div class="quote">
-    <h1 class="title">Avtomobili</h1>
-    <p class="subtitle">Z vami že več kot <strong>30 let</strong>!</p>
-  </div>
 </section>
 
 <section id="search-cars">
@@ -94,34 +80,50 @@
 
   <form action="" method="post">
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="znamka">
-        <option value="">-- Vse znamke --</option>
+      <select id="make" name="znamka" onchange="this.form.submit()">
+        <option value="0">-- Vse znamke --</option>
         % for znamka in znamke:
-        <option value="{{ znamka.znamka }}">{{ znamka.znamka }}</option>
+            % if str(znamka.id) == _znamka:
+                <option value="{{ znamka.id }}" selected> {{ znamka.znamka }}</option>
+            % else:
+                <option value="{{ znamka.id }}"> {{ znamka.znamka }}</option>
+            % end
         % end
       </select>
     </div>
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="model" class="select is-rounded" required>
+      <select id="make" name="model" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required onchange="this.form.submit()">
         <option value="">-- Modeli --</option>
         % for model in modeli:
-        <option value="{{ model.model }}">{{ model.model }}</option>
+            % if str(model.model) == _model:
+                <option value="{{ model.model }}" selected> {{ model.model }}</option>
+            % else:
+                <option value="{{ model.model }}"> {{ model.model }}</option>
+            % end
         % end
       </select>
     </div>
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="gorivo" class="select is-rounded" required>
+      <select id="make" name="gorivo" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required onchange="this.form.submit()">
         <option value="">-- Gorivo --</option>
-        % for g in gorivo:
-        <option value="{{ g.tip_goriva }}">{{ g.tip_goriva }}</option>
+        % for gorivo in goriva:
+            % if str(gorivo.tip_goriva) == _gorivo:
+                <option value="{{ gorivo.tip_goriva }}" selected> {{ gorivo.tip_goriva }}</option>
+            % else:
+                <option value="{{ gorivo.tip_goriva }}"> {{ gorivo.tip_goriva }}</option>
+            % end
         % end
       </select>
     </div>
     <div class="search-car select is-rounded is-primary">
-      <select id="make" name="menjalnik" class="select is-rounded" required>
+      <select id="make" name="menjalnik" oninvalid="this.setCustomValidity('Prosim izberite eno izmed možnosti.')" required">
         <option value="">-- Tip menjalnika --</option>
-        % for m in menjalnik:
-        <option value="{{ m.tip_menjalnika }}">{{ m.tip_menjalnika }}</option>
+        % for menjalnik in menjalniki:
+            % if str(menjalnik.tip_menjalnika) == _menjalnik:
+                <option value="{{ menjalnik.tip_menjalnika }}" selected> {{ menjalnik.tip_menjalnika }}</option>
+            % else:
+                <option value="{{ menjalnik.tip_menjalnika }}"> {{ menjalnik.tip_menjalnika }}</option>
+            % end
         % end
       </select>
     </div>
@@ -135,53 +137,20 @@
 
 <section id="brands-showcase">
   <div class="main-content-container">
+    %links = [('https://www.audi.si/', '/static/audi.png', 'AUDI'),
+    %         ('https://www.bmw.si/sl/index.html', '/static/bmw.png', 'BMW'),
+    %         ('https://www.jaguarslovenija.si/', '/static/jaguar.png', 'JAGUAR'),
+    %         ('https://ford.si/', '/static/ford.png', 'FORD'),
+    %         ('https://www.mazda.si/', '/static/mazda.png', 'MAZDA'),
+    %         ('https://www.mercedes-benz.si/', '/static/mercedes.png', 'MERCEDES'),
+    %         ('https://www.nissan.si/', '/static/nissan.png', 'NISSAN'),
+    %         ('https://dealer.porsche.com/si/ljubljana', '/static/porsche.png', 'PORSCHE')]
+    %for link in links:
     <div class="content-container">
-      <a href="https://www.audi.si/" target="_blank"
-        ><img src="/static/audi.png" alt="" />
-        <p class="image-caption">AUDI</p></a
+      <a href="{{ link[0] }}" target="_blank"
+        ><img src="{{ link[1] }}" alt="" />
+        <p class="image-caption">{{ link[2] }}</p></a
       >
     </div>
-    <div class="content-container">
-      <a href="https://www.bmw.si/sl/index.html" target="_blank"
-        ><img src="/static/bmw.png" alt="" />
-        <p class="image-caption">BMW</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://www.ferrari.com/en-EN" target="_blank"
-        ><img src="/static/ferrari.png" alt="" />
-        <p class="image-caption">FERRARI</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://ford.si/" target="_blank"
-        ><img src="/static/ford.png" alt="" />
-        <p class="image-caption">FORD</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://www.mazda.si/" target="_blank"
-        ><img src="/static/mazda.png" alt="" />
-        <p class="image-caption">MAZDA</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://www.mercedes-benz.si/" target="_blank"
-        ><img src="/static/mercedes.png" alt="" />
-        <p class="image-caption">MERCEDES</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://www.nissan.si/" target="_blank"
-        ><img src="/static/nissan.png" alt="" />
-        <p class="image-caption">NISSAN</p></a
-      >
-    </div>
-    <div class="content-container">
-      <a href="https://dealer.porsche.com/si/ljubljana" target="_blank"
-        ><img src="/static/porsche.png" alt="" />
-        <p class="image-caption">PORSCHE</p></a
-      >
-    </div>
-  </div>
+    %end
 </section>
